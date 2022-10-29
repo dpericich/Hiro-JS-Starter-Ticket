@@ -34,3 +34,14 @@
 
 ;; public functions
 ;;
+(define-public (transfer (token-id uint) (sender principal) (recipient principal))
+  (begin
+    (asserts! (is-eq true (var-get is-sales-allowed)) ERR_TICKET_SALES_UNAVAILABLE)
+    (asserts! (is-eq sender tx-sender) ERR_NOT_OWNER)
+    (nft-transfer? tickets token-id sender recipient)
+  )
+)
+
+
+;; private functions
+;;
