@@ -10,6 +10,7 @@
 (define-constant TICKET_PRICE u35)
 
 ;; ERRORS
+(define-constant ERR_OWNER_ONLY (err u101))
 (define-constant ERR_NOT_OWNER (err u102))
 (define-constant ERR_NOT_ENOUGH_STX (err u103))
 (define-constant ERR_ALL_TICKETS_PURCHASED (err u104))
@@ -55,6 +56,13 @@
     (asserts! (is-eq true (var-get is-sales-allowed)) ERR_TICKET_SALES_UNAVAILABLE)
     (asserts! (is-eq sender tx-sender) ERR_NOT_OWNER)
     (nft-transfer? tickets token-id sender recipient)
+  )
+)
+
+(define-public (stop-sales)
+  (begin
+    (asserts! (is-eq tx-sender CONTRACT_OWNER) ERR_OWNER_ONLY)
+    (ok (var-set is-sales-allowed false))
   )
 )
 
