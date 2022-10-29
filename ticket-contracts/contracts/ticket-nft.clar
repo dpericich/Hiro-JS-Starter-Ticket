@@ -38,16 +38,18 @@
 
 ;; public functions
 ;;
-(define-public (mint)
+(define-public (mint (recipient principal))
   (let
     (
       (new-token-id (+ (var-get last-token-id) u1))
     )
       (asserts! (is-eq tx-sender CONTRACT_OWNER) ERR_OWNER_ONLY)
       (asserts! (is-eq true (var-get is-sales-allowed)) ERR_TICKET_SALES_UNAVAILABLE)
-      (asserts! (>= (stx-get-balance tx-sender) TICKET_PRICE) ERR_NOT_ENOUGH_STX)
-      (asserts! (>= new-token-id MAXIMUM_TICKET_QTY) ERR_ALL_TICKETS_PURCHASED)
-      (nft-mint? tickets new-token-id tx-sender)
+      (asserts! (>= (stx-get-balance recipient) TICKET_PRICE) ERR_NOT_ENOUGH_STX)
+      (asserts! (>= MAXIMUM_TICKET_QTY new-token-id) ERR_ALL_TICKETS_PURCHASED)
+      (try! (stx-transfer? TICKET_PRICE tx-sender recipient))
+      (var-set last-token-id new-token-id)
+      (nft-mint? tickets new-token-id recipient)
   )
 )
 
