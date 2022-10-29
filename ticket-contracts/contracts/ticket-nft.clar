@@ -42,6 +42,7 @@
     (
       (new-token-id (+ (var-get last-token-id) u1))
     )
+      (asserts! (is-eq tx-sender CONTRACT_OWNER) ERR_OWNER_ONLY)
       (asserts! (is-eq true (var-get is-sales-allowed)) ERR_TICKET_SALES_UNAVAILABLE)
       (asserts! (>= (stx-get-balance tx-sender) TICKET_PRICE) ERR_NOT_ENOUGH_STX)
       (asserts! (>= new-token-id MAXIMUM_TICKET_QTY) ERR_ALL_TICKETS_PURCHASED)
