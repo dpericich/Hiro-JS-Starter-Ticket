@@ -6,15 +6,15 @@
 ;;
 (define-constant CONTRACT_OWNER tx-sender)
 (define-constant MAXIMUM_TICKET_QTY u50)
-;; Set base price f
 (define-constant TICKET_PRICE u35)
 
-;; ERRORS
+;; error constants
 (define-constant ERR_OWNER_ONLY (err u101))
 (define-constant ERR_NOT_OWNER (err u102))
 (define-constant ERR_NOT_ENOUGH_STX (err u103))
 (define-constant ERR_ALL_TICKETS_PURCHASED (err u104))
 (define-constant ERR_TICKET_SALES_UNAVAILABLE (err u105))
+(define-constant ERR_PAYMENT (err u106))
 
 ;; data maps and vars
 ;;
