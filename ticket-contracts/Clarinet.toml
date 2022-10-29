@@ -8,12 +8,12 @@ boot_contracts = ["pox", "costs-v2", "bns"]
 
 [project.cache_location]
 path = ".requirements"
-[contracts.ntf-contract]
-path = "contracts/ntf-contract.clar"
+[contracts.nft-contract]
+path = "contracts/nft-contract.clar"
 
 [contracts.ticket-nft]
 path = "contracts/ticket-nft.clar"
-depends_on = ["ntf-contract"]
+depends_on = ["nft-contract"]
 
 [repl]
 costs_version = 2

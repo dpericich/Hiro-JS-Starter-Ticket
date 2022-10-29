@@ -29,7 +29,7 @@
 )
 
 (define-read-only (get-owner (token-id uint))
-  (nft-get-owner? tickets token-id)
+  (ok (nft-get-owner? tickets token-id))
 )
 
 ;; public functions
