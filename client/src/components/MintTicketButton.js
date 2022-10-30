@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const MintTicketButton = () => {
-  const [buttonText, setButtonText] = useState("Claim Ticket")
+  const mint = () => {
+
+  }
 
   return(
-    <div>Claim Ticket</div>
+    <div onClick={() => alert("Hello")}>Purchase Ticket</div>
   )
 };
 
